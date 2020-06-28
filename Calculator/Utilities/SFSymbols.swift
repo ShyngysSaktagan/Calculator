@@ -9,9 +9,11 @@
 import UIKit
 
 enum SFSymbols {
-    static let plus         = "plus"
-    static let minus        = "minus"
-    static let multiply     = "multiply"
-    static let root         = "x.squareroot"
-    static let divide       = "divide"
+    static let plus             = "plus"
+    static let minus            = "minus"
+    static let multiply         = "multiply"
+    static let root             = "x.squareroot"
+    static let divide           = "divide"
+    
+    static let tableViewIcon    = "chart.bar.doc.horizontal.fill"
 }

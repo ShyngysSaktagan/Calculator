@@ -22,16 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene         = windowScene
         window?.rootViewController  = navigationController
         window?.makeKeyAndVisible()
-        
-        configureNavigationController()
-    }
-    
-    
-    func configureNavigationController() {
-        UINavigationBar.appearance().barTintColor = .black
-        UINavigationBar.appearance().tintColor = .black
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        UINavigationBar.appearance().isTranslucent = false
     }
     
 
