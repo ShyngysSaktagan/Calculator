@@ -8,7 +8,16 @@
 
 import UIKit
 
+
+protocol CalculatorViewDelegate {
+    func add(data: String)
+    func getData()
+}
+
+
 class CalculatorView: UIViewController {
+    
+    var delegate : CalculatorViewDelegate?
     
     var numberFromScreen:Double = 0
     var firstNum:Double = 0
@@ -179,20 +188,6 @@ class CalculatorView: UIViewController {
         print(sender.titleLabel!.text!)
         if sender.titleLabel!.text! != "0" && sender.titleLabel!.text! != "C" && sender.titleLabel!.text! != "◀︎" && sender.titleLabel!.text! != "=" {
             firstNum = Double(resultLabel.text!)!
-            
-            if sender.titleLabel!.text! == "+" {
-                print("1")
-            }
-            else if sender.titleLabel!.text! == "-" {
-                print("1")
-            }
-            else if sender.titleLabel!.text! == "x" {
-                print("1")
-            }
-            else if sender.titleLabel!.text! == "÷" {
-                print("1")
-            }
-            
             operation = sender.titleLabel!.text!
             mathSign = true
         }
@@ -209,6 +204,9 @@ class CalculatorView: UIViewController {
             else if operation == "÷" {
                 resultLabel.text = String(firstNum / numberFromScreen)
             }
+            
+            PersitenceManager.updateWith(number: resultLabel.text!)
+            
         }
             // TODO
         else if sender.titleLabel!.text! == "√" {

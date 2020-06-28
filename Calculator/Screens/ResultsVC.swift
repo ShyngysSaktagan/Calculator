@@ -11,11 +11,12 @@ import UIKit
 class ResultsVC: UIViewController {
     
     var tableView = UITableView()
-    var results = ["1", "2", "3"]
+    var results : [String]?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getNumbers()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         configureTableView()
     }
@@ -41,17 +42,41 @@ class ResultsVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate   = self
     }
+    
+    
+    func getNumbers() {
+        PersitenceManager.retrieveFavorites { [weak self] result in
+            guard let self = self else {return}
+            
+            switch result {
+                
+            case .success(let results):
+                if results.isEmpty {
+                    self.results = ["NO RESULTS"]
+                } else  {
+                    self.results = results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.view.bringSubviewToFront(self.tableView)
+                    }
+                }
+                
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
+    }
 }
 
 
 extension ResultsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count 
+        return results?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = results[indexPath.row]
+        cell.textLabel?.text = results?[indexPath.row]
         cell.backgroundColor = .black
         cell.textLabel?.textAlignment = .right
         cell.textLabel?.textColor = .white
