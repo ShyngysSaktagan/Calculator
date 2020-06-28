@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var resultLabel = GFResultLabel(textAlignment: .left, fontSize: 50)
+    var resultLabel = GFResultLabel()
     
     var botton0 = GFButton(backgroundColor: .gray, title: "0")
     var botton1 = GFButton(backgroundColor: .gray, title: "1")
@@ -40,13 +40,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        resultLabel.text = "0"
+//        resultLabel.backgroundColor = .red
         configureAbsStackView()
         configureButton()
         
     }
     
     func configureAbsStackView() {
-        absStackView.addArrangedSubview(UIView())
         absStackView.addArrangedSubview(stackView5)
         absStackView.addArrangedSubview(stackView4)
         absStackView.addArrangedSubview(stackView3)
@@ -61,6 +62,7 @@ class ViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
+//        stackView.addBackground(color: .white)
         return stackView
     }()
     
@@ -171,9 +173,13 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(equalStack)
         
         
-        
         NSLayoutConstraint.activate([
-            absStackView.heightAnchor.constraint(equalToConstant: 600),
+            resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 210),
+            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            resultLabel.heightAnchor.constraint(equalToConstant: 100),
+            
+            absStackView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 10),
             absStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             absStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             absStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)

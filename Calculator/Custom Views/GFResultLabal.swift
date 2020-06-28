@@ -19,18 +19,12 @@ class GFResultLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
-        super.init(frame: .zero)
-        self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        configure()
-    }
-    
+
     
     private func configure() {
-        textColor                   = .label
+        textAlignment               = .right
+        font = UIFont.systemFont(ofSize: 80, weight: .thin)
+        textColor                   = .white
         adjustsFontSizeToFitWidth   = true
         minimumScaleFactor          = 0.9
         lineBreakMode               = .byTruncatingTail
