@@ -17,29 +17,29 @@ enum PersitenceManager {
     }
     
     static func updateWith(number: String) {
-        retrieveFavorites { result in
+        retrieveResults { result in
             switch result {
             case .success(let numbers):
-                var retrievedFavorites = numbers
+                var retrievedNumbers = numbers
                 
-                retrievedFavorites.append(number)
+                retrievedNumbers.insert(number, at: 0)
 
                 do {
                     let encoder = JSONEncoder()
-                    let encodedFavorites = try encoder.encode(retrievedFavorites)
-                    defaults.set(encodedFavorites, forKey: Keys.numbers)
+                    let encodedNumbers = try encoder.encode(retrievedNumbers)
+                    defaults.set(encodedNumbers, forKey: Keys.numbers)
                 } catch let error {
-                    print("1")
+                    print("\(error)")
                 }
                 
             case .failure(let error):
-                print("2")
+                print("\(error)")
             }
         }
     }
         
         
-    static func retrieveFavorites(completed: @escaping (Result<[String], Error>) -> Void) {
+    static func retrieveResults(completed: @escaping (Result<[String], Error>) -> Void) {
         guard let favoritesData = defaults.object(forKey: Keys.numbers) as? Data else {
             completed(.success([]))
             return
@@ -50,7 +50,23 @@ enum PersitenceManager {
             let favorites = try decoder.decode([String].self, from: favoritesData)
             completed(.success(favorites))
         } catch let error {
-            print("3")
+            print("\(error)")
+        }
+    }
+    
+    
+    static func clearResults(completed: @escaping (Result<[String], Error>) -> Void) {
+        guard let favoritesData = defaults.object(forKey: Keys.numbers) as? Data else {
+            completed(.success([]))
+            return
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            let favorites = try decoder.decode([String].self, from: favoritesData)
+            completed(.success(favorites))
+        } catch let error {
+            print("\(error)")
         }
     }
 }

@@ -45,7 +45,7 @@ class ResultsVC: UIViewController {
     
     
     func getNumbers() {
-        PersitenceManager.retrieveFavorites { [weak self] result in
+        PersitenceManager.retrieveResults { [weak self] result in
             guard let self = self else {return}
             
             switch result {

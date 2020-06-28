@@ -23,6 +23,7 @@ class CalculatorView: UIViewController {
     var firstNum:Double = 0
     var operation:String = ""
     var mathSign:Bool = false
+    var afterEqual = false
     
     var resultLabel = GFResultLabel()
     
@@ -72,6 +73,11 @@ class CalculatorView: UIViewController {
         addFunctionToActions()
         configureNavigationBar(largeTitleColor: .white, backgoundColor: .black, tintColor: .white, title: "", preferredLargeTitle: false)
         setupTableViewButtonInNavBar()
+    }
+    
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     
@@ -170,7 +176,12 @@ class CalculatorView: UIViewController {
         if mathSign {
             resultLabel.text = sender.titleLabel?.text
             mathSign = false
-        } else {
+        }else if afterEqual {
+            resultLabel.text = sender.titleLabel?.text
+            afterEqual = false
+        }
+            
+        else {
             if (resultLabel.text!.count < 9) {
                 if resultLabel.text == "0" {
                     resultLabel.text = sender.titleLabel?.text
@@ -192,6 +203,7 @@ class CalculatorView: UIViewController {
             mathSign = true
         }
         else if sender.titleLabel!.text! == "=" {
+            afterEqual = true
             if operation == "+" {
                 resultLabel.text = String(firstNum + numberFromScreen)
             }
@@ -204,16 +216,17 @@ class CalculatorView: UIViewController {
             else if operation == "÷" {
                 resultLabel.text = String(firstNum / numberFromScreen)
             }
-            
+        
             PersitenceManager.updateWith(number: resultLabel.text!)
+            
             
         }
             // TODO
         else if sender.titleLabel!.text! == "√" {
-            print("he")
-            resultLabel.text = String(firstNum.squareRoot())
+//            resultLabel.text = String( Double(resultLabel.text!)?.squareRoot() )
         }
         else if sender.titleLabel!.text! == "◀︎" {
+            afterEqual = false
             if resultLabel.text!.count > 1 {
                 resultLabel.text = String(resultLabel.text?.prefix(resultLabel.text!.count - 1) ?? "0")
             }
@@ -226,7 +239,7 @@ class CalculatorView: UIViewController {
             firstNum = 0
             numberFromScreen = 0
             operation = ""
+            afterEqual = false
         }
-    
     }
 }
