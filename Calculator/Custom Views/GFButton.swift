@@ -39,11 +39,9 @@ class GFButton: UIButton {
     
     
     private func configure() {
-        titleLabel?.font        = UIFont.preferredFont(forTextStyle: .headline)
         self.titleLabel?.font   = UIFont.boldSystemFont(ofSize: 40)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.frame.size         = CGSize(width: 80, height: 80)
-        self.layer.cornerRadius = 0.5 * bounds.size.width
+        self.layer.cornerRadius = 20
         self.clipsToBounds = true
     }
     

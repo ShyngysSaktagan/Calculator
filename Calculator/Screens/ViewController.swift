@@ -10,39 +10,48 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let padding : CGFloat = 10
+    var resultLabel = GFResultLabel(textAlignment: .left, fontSize: 50)
     
-    var botton1 = GFButton(backgroundColor: .orange, title: "1")
-    var botton2 = GFButton(backgroundColor: .orange, title: "2")
-    var botton3 = GFButton(backgroundColor: .orange, title: "3")
-    var botton4 = GFButton(backgroundColor: .orange, title: "4")
+    var botton0 = GFButton(backgroundColor: .gray, title: "0")
+    var botton1 = GFButton(backgroundColor: .gray, title: "1")
+    var botton2 = GFButton(backgroundColor: .gray, title: "2")
+    var botton3 = GFButton(backgroundColor: .gray, title: "3")
+    var botton4 = GFButton(backgroundColor: .gray, title: "4")
+    var botton5 = GFButton(backgroundColor: .gray, title: "5")
+    var botton6 = GFButton(backgroundColor: .gray, title: "6")
+    var botton7 = GFButton(backgroundColor: .gray, title: "7")
+    var botton8 = GFButton(backgroundColor: .gray, title: "8")
+    var botton9 = GFButton(backgroundColor: .gray, title: "9")
     
+    var botton10 = GFButton(backgroundColor: .orange, title: "+")
+    var botton11 = GFButton(backgroundColor: .orange, title: "-")
+    var botton12 = GFButton(backgroundColor: .orange, title: "x")
+    var botton13 = GFButton(backgroundColor: .orange, title: "÷")
+    var botton15 = GFButton(backgroundColor: .orange, title: "=")
     
-    var botton5 = GFButton(backgroundColor: .orange, title: "5")
-    var botton6 = GFButton(backgroundColor: .orange, title: "6")
-    var botton7 = GFButton(backgroundColor: .orange, title: "7")
-    var botton8 = GFButton(backgroundColor: .orange, title: "8")
+    var botton14 = GFButton(backgroundColor: .systemGray3, title: "√", titleColor: .black)
+    var botton16 = GFButton(backgroundColor: .systemGray3, title: "C", titleColor: .black)
     
+    var botton17 = GFButton(backgroundColor: .gray, title: "")
+    var botton18 = GFButton(backgroundColor: .systemGray3, title: "")
+    var botton19 = GFButton(backgroundColor: .orange, title: "")
     
-    var botton9 = GFButton(backgroundColor: .orange, title: "9")
-    var botton10 = GFButton(backgroundColor: .orange, title: "10")
-    var botton11 = GFButton(backgroundColor: .orange, title: "11")
-    var botton12 = GFButton(backgroundColor: .orange, title: "12")
-    
-    var botton13 = GFButton(backgroundColor: .orange, title: "13")
-    var botton14 = GFButton(backgroundColor: .orange, title: "14")
-    var botton15 = GFButton(backgroundColor: .orange, title: "15")
-    var botton16 = GFButton(backgroundColor: .orange, title: "16")
-    
-    var botton17 = GFButton(backgroundColor: .orange, title: "17")
-    var botton18 = GFButton(backgroundColor: .orange, title: "18")
-    var botton19 = GFButton(backgroundColor: .orange, title: "19")
-    var botton20 = GFButton(backgroundColor: .orange, title: "20")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        configureAbsStackView()
         configureButton()
+        
+    }
+    
+    func configureAbsStackView() {
+        absStackView.addArrangedSubview(UIView())
+        absStackView.addArrangedSubview(stackView5)
+        absStackView.addArrangedSubview(stackView4)
+        absStackView.addArrangedSubview(stackView3)
+        absStackView.addArrangedSubview(stackView2)
+        absStackView.addArrangedSubview(stackView)
     }
     
     
@@ -52,7 +61,6 @@ class ViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = .white
         return stackView
     }()
     
@@ -66,7 +74,17 @@ class ViewController: UIViewController {
         stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addBackground(color: .white)
+        return stackView
+    }()
+    
+    
+    let equalStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -80,7 +98,6 @@ class ViewController: UIViewController {
         stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addBackground(color: .white)
         return stackView
     }()
     
@@ -94,7 +111,6 @@ class ViewController: UIViewController {
         stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addBackground(color: .white)
         return stackView
     }()
     
@@ -108,7 +124,6 @@ class ViewController: UIViewController {
         stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addBackground(color: .white)
         return stackView
     }()
     
@@ -121,46 +136,41 @@ class ViewController: UIViewController {
         stackView.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addBackground(color: .white)
         return stackView
     }()
 
     
     func configureButton() {
-        
+        view.addSubview(resultLabel)
         view.addSubview(absStackView)
-        absStackView.addArrangedSubview(UIView())
-        absStackView.addArrangedSubview(stackView)
-        absStackView.addArrangedSubview(stackView2)
-        absStackView.addArrangedSubview(stackView3)
-        absStackView.addArrangedSubview(stackView4)
-        absStackView.addArrangedSubview(stackView5)
         
-        
-        stackView.addArrangedSubview(botton1)
-        stackView.addArrangedSubview(botton2)
-        stackView.addArrangedSubview(botton3)
-        stackView.addArrangedSubview(botton4)
-        
-        stackView2.addArrangedSubview(botton5)
-        stackView2.addArrangedSubview(botton6)
-        stackView2.addArrangedSubview(botton7)
-        stackView2.addArrangedSubview(botton8)
-        
-        stackView3.addArrangedSubview(botton9)
-        stackView3.addArrangedSubview(botton10)
-        stackView3.addArrangedSubview(botton11)
-        stackView3.addArrangedSubview(botton12)
-        
-        stackView4.addArrangedSubview(botton13)
-        stackView4.addArrangedSubview(botton14)
-        stackView4.addArrangedSubview(botton15)
-        stackView4.addArrangedSubview(botton16)
-        
-        stackView5.addArrangedSubview(botton17)
+        stackView5.addArrangedSubview(botton16)
         stackView5.addArrangedSubview(botton18)
-        stackView5.addArrangedSubview(botton19)
-        stackView5.addArrangedSubview(botton20)
+        stackView5.addArrangedSubview(botton14)
+        stackView5.addArrangedSubview(botton13)
+        
+        stackView4.addArrangedSubview(botton7)
+        stackView4.addArrangedSubview(botton8)
+        stackView4.addArrangedSubview(botton9)
+        stackView4.addArrangedSubview(botton12)
+        
+        stackView3.addArrangedSubview(botton4)
+        stackView3.addArrangedSubview(botton5)
+        stackView3.addArrangedSubview(botton6)
+        stackView3.addArrangedSubview(botton11)
+               
+        stackView2.addArrangedSubview(botton1)
+        stackView2.addArrangedSubview(botton2)
+        stackView2.addArrangedSubview(botton3)
+        stackView2.addArrangedSubview(botton10)
+        
+        equalStack.addArrangedSubview(botton17)
+        equalStack.addArrangedSubview(botton15)
+        
+        stackView.addArrangedSubview(botton0)
+        stackView.addArrangedSubview(equalStack)
+        
+        
         
         NSLayoutConstraint.activate([
             absStackView.heightAnchor.constraint(equalToConstant: 600),

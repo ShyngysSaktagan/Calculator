@@ -14,6 +14,7 @@
 		7E746AB424A83E5800C68827 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E746AB224A83E5800C68827 /* LaunchScreen.storyboard */; };
 		7ED6AEA324A856FC007C426B /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AEA224A856FC007C426B /* GFButton.swift */; };
 		7ED6AEA524A8591D007C426B /* GFResultLabal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AEA424A8591D007C426B /* GFResultLabal.swift */; };
+		7ED6AEAB24A884D7007C426B /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AEAA24A884D7007C426B /* SFSymbols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		7E746AB524A83E5800C68827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ED6AEA224A856FC007C426B /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
 		7ED6AEA424A8591D007C426B /* GFResultLabal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFResultLabal.swift; sourceTree = "<group>"; };
+		7ED6AEAA24A884D7007C426B /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		7E746AA624A83E5300C68827 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				7ED6AEA924A884A9007C426B /* Utilities */,
 				7ED6AEA824A8596B007C426B /* Screens */,
 				7ED6AEA724A8595C007C426B /* Custom Views */,
 				7ED6AEA624A8592B007C426B /* Support */,
@@ -92,6 +95,14 @@
 				7E746AAB24A83E5300C68827 /* ViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		7ED6AEA924A884A9007C426B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7ED6AEAA24A884D7007C426B /* SFSymbols.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +177,7 @@
 			files = (
 				7ED6AEA524A8591D007C426B /* GFResultLabal.swift in Sources */,
 				7E746AAC24A83E5300C68827 /* ViewController.swift in Sources */,
+				7ED6AEAB24A884D7007C426B /* SFSymbols.swift in Sources */,
 				7E746AA824A83E5300C68827 /* AppDelegate.swift in Sources */,
 				7ED6AEA324A856FC007C426B /* GFButton.swift in Sources */,
 				7E746AAA24A83E5300C68827 /* SceneDelegate.swift in Sources */,
