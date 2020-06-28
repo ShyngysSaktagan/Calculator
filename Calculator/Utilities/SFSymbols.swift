@@ -15,5 +15,3 @@ enum SFSymbols {
     static let root         = "x.squareroot"
     static let divide       = "divide"
 }
-
-

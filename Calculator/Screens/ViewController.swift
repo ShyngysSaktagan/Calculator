@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorView: UIViewController {
     
     var resultLabel = GFResultLabel()
     
@@ -116,21 +116,5 @@ class ViewController: UIViewController {
             absStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             absStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-    }
-}
-
-
-
-
-
-
-
-
-extension UIStackView {
-    func addBackground(color: UIColor) {
-        let subView = UIView(frame: bounds)
-        subView.backgroundColor = color
-        subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        insertSubview(subView, at: 0)
     }
 }
