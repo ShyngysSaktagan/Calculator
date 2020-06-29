@@ -16,6 +16,14 @@ enum PersitenceManager {
         static let numbers = "numbers"
     }
     
+    
+    static func resetDefaults() {
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            defaults.removeObject(forKey: key)
+        }
+    }
+    
     static func updateWith(number: String) {
         retrieveResults { result in
             switch result {
@@ -40,22 +48,6 @@ enum PersitenceManager {
         
         
     static func retrieveResults(completed: @escaping (Result<[String], Error>) -> Void) {
-        guard let favoritesData = defaults.object(forKey: Keys.numbers) as? Data else {
-            completed(.success([]))
-            return
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            let favorites = try decoder.decode([String].self, from: favoritesData)
-            completed(.success(favorites))
-        } catch let error {
-            print("\(error)")
-        }
-    }
-    
-    
-    static func clearResults(completed: @escaping (Result<[String], Error>) -> Void) {
         guard let favoritesData = defaults.object(forKey: Keys.numbers) as? Data else {
             completed(.success([]))
             return

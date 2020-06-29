@@ -21,6 +21,7 @@
 		7ED6AEB424A8CF42007C426B /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AEB324A8CF42007C426B /* UIViewController + Ext.swift */; };
 		7ED6AEB624A8D2A3007C426B /* ResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AEB524A8D2A3007C426B /* ResultsVC.swift */; };
 		7ED6AEB924A913F0007C426B /* PersitenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AEB824A913F0007C426B /* PersitenceManager.swift */; };
+		7ED6AEBD24AA28EC007C426B /* UIButton + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AEBC24AA28EC007C426B /* UIButton + Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		7ED6AEB324A8CF42007C426B /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		7ED6AEB524A8D2A3007C426B /* ResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsVC.swift; sourceTree = "<group>"; };
 		7ED6AEB824A913F0007C426B /* PersitenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersitenceManager.swift; sourceTree = "<group>"; };
+		7ED6AEBC24AA28EC007C426B /* UIButton + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				7ED6AEAF24A8A15F007C426B /* UIStackView + Ext.swift */,
 				7ED6AEB124A8CEEF007C426B /* UINavigationController + Ext.swift */,
 				7ED6AEB324A8CF42007C426B /* UIViewController + Ext.swift */,
+				7ED6AEBC24AA28EC007C426B /* UIButton + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				7ED6AEA524A8591D007C426B /* GFResultLabal.swift in Sources */,
 				7E746AAC24A83E5300C68827 /* CalculatorView.swift in Sources */,
 				7ED6AEAB24A884D7007C426B /* SFSymbols.swift in Sources */,
+				7ED6AEBD24AA28EC007C426B /* UIButton + Ext.swift in Sources */,
 				7E746AA824A83E5300C68827 /* AppDelegate.swift in Sources */,
 				7ED6AEA324A856FC007C426B /* GFButton.swift in Sources */,
 				7ED6AEB024A8A15F007C426B /* UIStackView + Ext.swift in Sources */,

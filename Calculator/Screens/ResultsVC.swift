@@ -19,7 +19,23 @@ class ResultsVC: UIViewController {
         getNumbers()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         configureTableView()
+        setupClearButton()
     }
+    
+    
+
+    func setupClearButton() {
+    
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear All", style: .plain, target: self, action: #selector(clearAll))
+    }
+    
+    
+    @objc func clearAll() {
+        PersitenceManager.resetDefaults()
+        results = ["NO RESULTS"]
+        self.tableView.reloadData()
+    }
+        
     
     
     func configureTableView() {
@@ -55,10 +71,10 @@ class ResultsVC: UIViewController {
                     self.results = ["NO RESULTS"]
                 } else  {
                     self.results = results
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.view.bringSubviewToFront(self.tableView)
-                    }
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                        self.view.bringSubviewToFront(self.tableView)
+//                    }
                 }
                 
             case .failure(let error):

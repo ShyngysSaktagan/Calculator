@@ -204,20 +204,34 @@ class CalculatorView: UIViewController {
         }
         else if sender.titleLabel!.text! == "=" {
             afterEqual = true
+            var ans = ""
             if operation == "+" {
-                resultLabel.text = String(firstNum + numberFromScreen)
+                if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
+                    ans = String(Int(firstNum) + Int(numberFromScreen))
+                }else {
+                    ans = String(firstNum + numberFromScreen)
+                }
             }
             else if operation == "-" {
-                resultLabel.text = String(firstNum - numberFromScreen)
+                if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
+                    ans = String(Int(firstNum) - Int(numberFromScreen))
+                }else {
+                    ans = String(firstNum - numberFromScreen)
+                }
             }
             else if operation == "x" {
-                resultLabel.text = String(firstNum * numberFromScreen)
+                if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
+                    ans = String(Int(firstNum) * Int(numberFromScreen))
+                }else {
+                    ans = String(firstNum * numberFromScreen)
+                }
             }
             else if operation == "÷" {
-                resultLabel.text = String(firstNum / numberFromScreen)
+                ans = String(firstNum / numberFromScreen)
             }
-        
-            PersitenceManager.updateWith(number: resultLabel.text!)
+            
+            resultLabel.text = ans
+            PersitenceManager.updateWith(number: ans)
             
             
         }

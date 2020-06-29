@@ -44,6 +44,7 @@ class GFButton: UIButton {
         self.frame.size = CGSize(width: 90, height: 90)
         self.layer.cornerRadius = self.frame.size.width / 2
         self.clipsToBounds = true
+        self.startAnimatingPressActions()
     }
     
     
