@@ -23,7 +23,7 @@ class GFResultLabel: UILabel {
     
     private func configure() {
         textAlignment               = .right
-        font = UIFont.systemFont(ofSize: 80, weight: .thin)
+        font                        = UIFont.systemFont(ofSize: 80, weight: .thin)
         textColor                   = .white
         adjustsFontSizeToFitWidth   = true
         minimumScaleFactor          = 0.9

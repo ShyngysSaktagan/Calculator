@@ -22,10 +22,8 @@ class ResultsVC: UIViewController {
         setupClearButton()
     }
     
-    
 
     func setupClearButton() {
-    
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear All", style: .plain, target: self, action: #selector(clearAll))
     }
     
@@ -35,7 +33,6 @@ class ResultsVC: UIViewController {
         results = ["NO RESULTS"]
         self.tableView.reloadData()
     }
-        
     
     
     func configureTableView() {
@@ -71,10 +68,6 @@ class ResultsVC: UIViewController {
                     self.results = ["NO RESULTS"]
                 } else  {
                     self.results = results
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                        self.view.bringSubviewToFront(self.tableView)
-//                    }
                 }
                 
             case .failure(let error):

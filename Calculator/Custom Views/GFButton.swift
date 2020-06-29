@@ -23,8 +23,8 @@ class GFButton: UIButton {
     
     init(backgroundColor: UIColor, title: String) {
         super.init(frame: .zero)
-        self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
+        self.backgroundColor = backgroundColor
         configure()
     }
     
@@ -40,10 +40,10 @@ class GFButton: UIButton {
     
     private func configure() {
         self.titleLabel?.font = UIFont.systemFont(ofSize: 41, weight: .regular)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.frame.size = CGSize(width: 90, height: 90)
-        self.layer.cornerRadius = self.frame.size.width / 2
-        self.clipsToBounds = true
+        self.translatesAutoresizingMaskIntoConstraints  = false
+        self.frame.size                                 = CGSize(width: 90, height: 90)
+        self.layer.cornerRadius                         = self.frame.size.width / 2
+        self.clipsToBounds                              = true
         self.startAnimatingPressActions()
     }
     

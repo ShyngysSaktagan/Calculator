@@ -30,18 +30,18 @@ class CalculatorView: UIViewController {
     var numbers : [GFButton]?
     var actions : [GFButton]?
     
-    var botton0 = GFButton(backgroundColor: .gray, title: "0")
+    var botton0 = GFButton(backgroundColor: .darkGray, title: "0")
     
-    var botton1 = GFButton(backgroundColor: .gray, title: "1")
-    var botton2 = GFButton(backgroundColor: .gray, title: "2")
-    var botton3 = GFButton(backgroundColor: .gray, title: "3")
-    var botton4 = GFButton(backgroundColor: .gray, title: "4")
-    var botton5 = GFButton(backgroundColor: .gray, title: "5")
-    var botton6 = GFButton(backgroundColor: .gray, title: "6")
-    var botton7 = GFButton(backgroundColor: .gray, title: "7")
-    var botton8 = GFButton(backgroundColor: .gray, title: "8")
-    var botton9 = GFButton(backgroundColor: .gray, title: "9")
-    var botton18 = GFButton(backgroundColor: .gray, title: "")
+    var botton1 = GFButton(backgroundColor: .darkGray, title: "1")
+    var botton2 = GFButton(backgroundColor: .darkGray, title: "2")
+    var botton3 = GFButton(backgroundColor: .darkGray, title: "3")
+    var botton4 = GFButton(backgroundColor: .darkGray, title: "4")
+    var botton5 = GFButton(backgroundColor: .darkGray, title: "5")
+    var botton6 = GFButton(backgroundColor: .darkGray, title: "6")
+    var botton7 = GFButton(backgroundColor: .darkGray, title: "7")
+    var botton8 = GFButton(backgroundColor: .darkGray, title: "8")
+    var botton9 = GFButton(backgroundColor: .darkGray, title: "9")
+    var botton18 = GFButton(backgroundColor: .darkGray, title: "")
     
     
     var botton10 = GFButton(backgroundColor: .orange, title: "+")
@@ -54,31 +54,26 @@ class CalculatorView: UIViewController {
     var botton16 = GFButton(backgroundColor: .systemGray3, title: "C", titleColor: .black)
     var botton17 = GFButton(backgroundColor: .systemGray3, title: "◀︎", titleColor: .black)
     
+    let absStackView = GFVerticalStackView()
     
-    let stackView = GFStackView(edge: 10, spacing: 10)
-    let equalStack = GFStackView(spacing: 10)
+    let stackView = GFHorizontalStackView(edge: 10, spacing: 10)
+    let equalStack = GFHorizontalStackView(spacing: 10)
     
-    let stackView2 = GFStackView(edge: 10, spacing: 10)
-    let stackView3 = GFStackView(edge: 10, spacing: 10)
-    let stackView4 = GFStackView(edge: 10, spacing: 10)
-    let stackView5 = GFStackView(edge: 10, spacing: 10)
+    let stackView2 = GFHorizontalStackView(edge: 10, spacing: 10)
+    let stackView3 = GFHorizontalStackView(edge: 10, spacing: 10)
+    let stackView4 = GFHorizontalStackView(edge: 10, spacing: 10)
+    let stackView5 = GFHorizontalStackView(edge: 10, spacing: 10)
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         resultLabel.text = "0"
-        configureAbsStackView()
-        configureButton()
+        setupUI()
         addFunctionToNumbers()
         addFunctionToActions()
         configureNavigationBar(largeTitleColor: .white, backgoundColor: .black, tintColor: .white, title: "", preferredLargeTitle: false)
         setupTableViewButtonInNavBar()
-    }
-    
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     
@@ -106,28 +101,11 @@ class CalculatorView: UIViewController {
     }
     
     
-    func configureAbsStackView() {
-        absStackView.addArrangedSubview(stackView5)
-        absStackView.addArrangedSubview(stackView4)
-        absStackView.addArrangedSubview(stackView3)
-        absStackView.addArrangedSubview(stackView2)
-        absStackView.addArrangedSubview(stackView)
-    }
-    
-    
-    let absStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    
-    func configureButton() {
+    func setupUI() {
         view.addSubview(resultLabel)
         view.addSubview(absStackView)
+        
+        absStackView.addArrangedSubviews(stackView5, stackView4, stackView3, stackView2, stackView)
         
         stackView5.addArrangedSubviews(botton16, botton17, botton15, botton13)
         stackView4.addArrangedSubviews(botton7, botton8, botton9, botton12)
@@ -177,11 +155,12 @@ class CalculatorView: UIViewController {
     
     @objc private func didTapAction(_ sender: UIButton) {
         print(sender.titleLabel!.text!)
-        if sender.titleLabel!.text! != "0" && sender.titleLabel!.text! != "C" && sender.titleLabel!.text! != "◀︎" && sender.titleLabel!.text! != "=" {
+        if sender.titleLabel!.text! != "0" && sender.titleLabel!.text! != "C" && sender.titleLabel!.text! != "◀︎" && sender.titleLabel!.text! != "=" &&  sender.titleLabel!.text! != "√" {
             firstNum = Double(resultLabel.text!)!
             operation = sender.titleLabel!.text!
             mathSign = true
         }
+            
         else if sender.titleLabel!.text! == "=" {
             afterEqual = true
             var ans = ""
@@ -211,17 +190,18 @@ class CalculatorView: UIViewController {
                     ans = String(firstNum / numberFromScreen)
                 }
                     
-                resultLabel.text = ans
-                PersitenceManager.updateWith(number: ans)
+            resultLabel.text = ans
+            PersitenceManager.updateWith(number: ans)
                          
             }
-           
+        }
             
-        }
-            // TODO
         else if sender.titleLabel!.text! == "√" {
-//            resultLabel.text = String( Double(resultLabel.text!)?.squareRoot() )
+            if resultLabel.text != "0" {
+                resultLabel.text = "\(Double(resultLabel.text!)?.squareRoot() ?? 0)"
+            }
         }
+            
         else if sender.titleLabel!.text! == "◀︎" {
             afterEqual = false
             if resultLabel.text!.count > 1 {
@@ -231,6 +211,7 @@ class CalculatorView: UIViewController {
                 resultLabel.text = "0"
             }
         }
+            
         else if sender.titleLabel!.text! == "C" {
             resultLabel.text = "0"
             firstNum = 0

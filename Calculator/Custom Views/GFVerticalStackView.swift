@@ -1,14 +1,14 @@
 //
-//  GFStackView.swift
+//  GFVerticalStackView.swift
 //  Calculator
 //
-//  Created by Shyngys Saktagan on 6/28/20.
+//  Created by Shyngys Saktagan on 6/29/20.
 //  Copyright © 2020 ShyngysSaktagan. All rights reserved.
 //
 
 import UIKit
 
-class GFStackView: UIStackView {
+class GFVerticalStackView: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,10 +18,9 @@ class GFStackView: UIStackView {
     
     init(edge: CGFloat) {
         super.init(frame: .zero)
-        layoutMargins = UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
-        isLayoutMarginsRelativeArrangement = true
+        layoutMargins                       = UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
+        isLayoutMarginsRelativeArrangement  = true
         configure()
-
     }
     
     
@@ -29,18 +28,15 @@ class GFStackView: UIStackView {
         super.init(frame: .zero)
         self.spacing = spacing
         configure()
-
     }
     
     
     init(edge: CGFloat, spacing: CGFloat) {
         super.init(frame: .zero)
-        self.spacing = spacing
-        layoutMargins = UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
-        isLayoutMarginsRelativeArrangement = true
+        self.spacing                        = spacing
+        layoutMargins                       = UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
+        isLayoutMarginsRelativeArrangement  = true
         configure()
-
-
     }
     
     required init(coder: NSCoder) {
@@ -49,9 +45,9 @@ class GFStackView: UIStackView {
     
     
     private func configure() {
-        axis = .horizontal
-        alignment = .fill
-        distribution = .fillEqually
+        axis            = .vertical
+        alignment       = .fill
+        distribution    = .fillEqually
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
