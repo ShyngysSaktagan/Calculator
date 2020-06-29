@@ -31,6 +31,7 @@ class CalculatorView: UIViewController {
     var actions : [GFButton]?
     
     var botton0 = GFButton(backgroundColor: .gray, title: "0")
+    
     var botton1 = GFButton(backgroundColor: .gray, title: "1")
     var botton2 = GFButton(backgroundColor: .gray, title: "2")
     var botton3 = GFButton(backgroundColor: .gray, title: "3")
@@ -82,8 +83,7 @@ class CalculatorView: UIViewController {
     
     
     func setupTableViewButtonInNavBar() {
-//        let addSymbol = UIImage(systemName: SFSymbols.tableViewIcon)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "❖", style: .plain, target: self, action: #selector(pushToTableView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Results", style: .plain, target: self, action: #selector(pushToTableView))
     }
     
     
@@ -101,7 +101,7 @@ class CalculatorView: UIViewController {
     
     
     func addFunctionToNumbers() {
-        numbers = [botton1,botton2,botton3,botton4,botton5,botton6,botton7,botton8,botton9]
+        numbers = [botton0,botton1,botton2,botton3,botton4,botton5,botton6,botton7,botton8,botton9]
         numbers?.forEach({ $0.addTarget(self, action: #selector(didTapNumber(_:)), for: .touchUpInside)})
     }
     
@@ -129,32 +129,12 @@ class CalculatorView: UIViewController {
         view.addSubview(resultLabel)
         view.addSubview(absStackView)
         
-        stackView5.addArrangedSubview(botton16)
-        stackView5.addArrangedSubview(botton17)
-        stackView5.addArrangedSubview(botton15)
-        stackView5.addArrangedSubview(botton13)
-        
-        stackView4.addArrangedSubview(botton7)
-        stackView4.addArrangedSubview(botton8)
-        stackView4.addArrangedSubview(botton9)
-        stackView4.addArrangedSubview(botton12)
-        
-        stackView3.addArrangedSubview(botton4)
-        stackView3.addArrangedSubview(botton5)
-        stackView3.addArrangedSubview(botton6)
-        stackView3.addArrangedSubview(botton11)
-               
-        stackView2.addArrangedSubview(botton1)
-        stackView2.addArrangedSubview(botton2)
-        stackView2.addArrangedSubview(botton3)
-        stackView2.addArrangedSubview(botton10)
-        
-        equalStack.addArrangedSubview(botton18)
-        equalStack.addArrangedSubview(botton14)
-        
-        stackView.addArrangedSubview(botton0)
-        stackView.addArrangedSubview(equalStack)
-        
+        stackView5.addArrangedSubviews(botton16, botton17, botton15, botton13)
+        stackView4.addArrangedSubviews(botton7, botton8, botton9, botton12)
+        stackView3.addArrangedSubviews(botton4, botton5, botton6, botton11)
+        stackView2.addArrangedSubviews(botton1, botton2, botton3, botton10)
+        equalStack.addArrangedSubviews(botton18, botton14)
+        stackView.addArrangedSubviews(botton0, equalStack)
         
         NSLayoutConstraint.activate([
             resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 135),
@@ -205,34 +185,37 @@ class CalculatorView: UIViewController {
         else if sender.titleLabel!.text! == "=" {
             afterEqual = true
             var ans = ""
-            if operation == "+" {
-                if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
-                    ans = String(Int(firstNum) + Int(numberFromScreen))
-                }else {
-                    ans = String(firstNum + numberFromScreen)
+            if numberFromScreen != 0 && firstNum != 0 {
+                if operation == "+" {
+                    if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
+                        ans = String(Int(firstNum) + Int(numberFromScreen))
+                    }else {
+                        ans = String(firstNum + numberFromScreen)
+                    }
                 }
-            }
-            else if operation == "-" {
-                if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
-                    ans = String(Int(firstNum) - Int(numberFromScreen))
-                }else {
-                    ans = String(firstNum - numberFromScreen)
+                else if operation == "-" {
+                    if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
+                        ans = String(Int(firstNum) - Int(numberFromScreen))
+                    }else {
+                        ans = String(firstNum - numberFromScreen)
+                    }
                 }
-            }
-            else if operation == "x" {
-                if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
-                    ans = String(Int(firstNum) * Int(numberFromScreen))
-                }else {
-                    ans = String(firstNum * numberFromScreen)
+                else if operation == "x" {
+                    if type(of: firstNum) == type(of: round(firstNum)) && type(of: numberFromScreen) == type(of: round(numberFromScreen)){
+                        ans = String(Int(firstNum) * Int(numberFromScreen))
+                    }else {
+                        ans = String(firstNum * numberFromScreen)
+                    }
                 }
+                else if operation == "÷" {
+                    ans = String(firstNum / numberFromScreen)
+                }
+                    
+                resultLabel.text = ans
+                PersitenceManager.updateWith(number: ans)
+                         
             }
-            else if operation == "÷" {
-                ans = String(firstNum / numberFromScreen)
-            }
-            
-            resultLabel.text = ans
-            PersitenceManager.updateWith(number: ans)
-            
+           
             
         }
             // TODO

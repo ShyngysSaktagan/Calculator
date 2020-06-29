@@ -54,4 +54,10 @@ class GFStackView: UIStackView {
         distribution = .fillEqually
         self.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    func addArrangedSubviews (_ views: UIView...) {
+        for view in views {
+            self.addArrangedSubview(view)
+        }
+    }
 }
