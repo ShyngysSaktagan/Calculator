@@ -157,7 +157,7 @@ class CalculatorView: UIViewController {
         
         
         NSLayoutConstraint.activate([
-            resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 175),
+            resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 135),
             resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             resultLabel.heightAnchor.constraint(equalToConstant: 60),
