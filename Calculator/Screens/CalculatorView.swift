@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SnapKit
 
 protocol CalculatorViewDelegate {
     func add(data: String)
@@ -114,17 +114,29 @@ class CalculatorView: UIViewController {
         equalStack.addArrangedSubviews(botton18, botton14)
         stackView.addArrangedSubviews(botton0, equalStack)
         
-        NSLayoutConstraint.activate([
-            resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 135),
-            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            resultLabel.heightAnchor.constraint(equalToConstant: 60),
-            
-            absStackView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 10),
-            absStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
-            absStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            absStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        resultLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(135)
+            make.leading.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(60)
+        }
+        
+        absStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-25)
+            make.top.equalTo(resultLabel.snp.bottom).offset(10)
+        }
+//
+//        NSLayoutConstraint.activate([
+//            resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 135),
+//            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            resultLabel.heightAnchor.constraint(equalToConstant: 60),
+//
+//            absStackView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 10),
+//            absStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+//            absStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            absStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+//        ])
     }
     
     
